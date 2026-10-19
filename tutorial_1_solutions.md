@@ -24,21 +24,23 @@ Look at the data using `cat`, `awk`, `less`, `head`, etc to familiarise yourse
 
 - Create a new file `smaller.csv` where we you keep only the columns: `"city_ascii","lat","lng","country","population","id"`
 
+solution: `cut -d, -f2,3,4,5,10,11 worldcities.csv > smaller.csv`
 
 - As you can see all the elements are double quoted, get rid of the double quotes creating a new file `clean.csv`. 
 
+solution: `cat smaller.csv | sed 's|"||g' > clean.csv`
 
 Could you obtain the `clean.csv` with a single command line?
 
 ## Step 3
 - Compare the size of the `smaller.csv` and the original dataset size
-
+solution: `ls -lhr`
 - Find your favourite city using the grep command
-
+solution: `grep Munich smaller.csv`
 - Find the five cities with the most number of inhabitants (use the `clean.csv` file )
-
+solution: `cat clean.csv | sort -t, -g -r  -k5 | head -n 5`
 -  Print the cities and population where population is > 10000000. If u see string like "minor", "admin" can u get what went wrong?
-
+solution : `cat clean.csv | awk -F, '($5>10000000){print $1","$5}'| less`. Some cities have the comma in their names.
 
 
 As you discussed in the lecture the unix tools are best for quick data manipulations, **but** for more serious processing you'll have to switch to some other tools/programming language. You can use any tool you like, and we will show you a few, including Python & Julia. This week's exercise focuses on Python, and we will have more on Julia a little later.
