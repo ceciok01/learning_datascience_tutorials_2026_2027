@@ -34,12 +34,16 @@ Could you obtain the `clean.csv` with a single command line?
 
 ## Step 3
 - Compare the size of the `smaller.csv` and the original dataset size
+  
 solution: `ls -lhr`
 - Find your favourite city using the grep command
+  
 solution: `grep Munich smaller.csv`
 - Find the five cities with the most number of inhabitants (use the `clean.csv` file )
+  
 solution: `cat clean.csv | sort -t, -g -r  -k5 | head -n 5`
 -  Print the cities and population where population is > 10000000. If u see string like "minor", "admin" can u get what went wrong?
+  
 solution : `cat clean.csv | awk -F, '($5>10000000){print $1","$5}'| less`. Some cities have the comma in their names.
 
 
